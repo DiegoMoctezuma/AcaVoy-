@@ -16,96 +16,134 @@ struct ContentView: View {
                         Text("AcaVoy!")
                             .bold()
                             .font(.title)
-                            .foregroundColor(.yellow)
+                            .foregroundColor(.white)
+                        Spacer()
                         NavigationLink{
                             buscador()
                         }
                         label: {
                             Image(systemName: "magnifyingglass")
                                 .font(.title2)
+                                .foregroundColor(.white)
+                            
                         }
-                        Spacer()
-                        AsyncImage(url: URL(string: "https://picsum.photos/200"))
-                            .frame(width: 60, height: 60)
-                            .cornerRadius(32)
-                            .overlay(Circle().stroke(.gray))
+                        
+                        NavigationLink{
+                            perfil()
+                        }
+                        label: {
+                            AsyncImage(url: URL(string: "https://picsum.photos/200"))
+                                .frame(width: 60, height: 60)
+                                .cornerRadius(32)
+                                .overlay(Circle().stroke(.gray))
+                        }
                     }
-                    HStack{
-                        Text("Lily Allen")
-                            .bold()
-                            .font(.title)
-                        Spacer()
-                        Text("Online")
-                            .font(.title2)
-                            .foregroundColor(.green)
-                        Circle()
-                            .frame(width: 20)
-                            .foregroundColor(.green)
-                    }
-                    Spacer()
-                    Text("Recomendados")
+                        .padding(10)
+                        .padding(.top, 40)
+                        .background(Color(UIColor(red:30/255,green: 75/255,blue: 128/255,alpha: 1.0)))
+                    //favoritos
+                    Text("Favoritos")
                         .font(.title)
-                        .foregroundColor(.cyan)
+                    ScrollView(.horizontal,showsIndicators: false){
+                        HStack{
+                            HStack(alignment:.top){
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                                VStack(alignment: .leading){
+                                    Text("Metro San Juan")
+                                    Text("Ruta A -> B")
+                                        .bold()
+                                }
+                            }
+                            HStack(alignment:.top){
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.yellow)
+                                VStack(alignment: .leading){
+                                    Text("FES Acatlan")
+                                    Text("Ruta A -> B")
+                                        .bold()
+                                }
+                            }
+                            HStack(alignment:.top){
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                                VStack{
+                                    Text("Huastes")
+                                    Text("Ruta A -> B")
+                                        .bold()
+                                }
+                            }
+                        }
+                    }.padding()
+                    Spacer()
                     HStack{
-                        VStack(alignment:.leading){
-                            HStack{
-                                Text("Ruta 1")
-                                    .bold()
-                                Image(systemName: "clock")
-                                    .font(.title2)
-                                Text("15 min")
-                                    .frame(width: 55)
-                                Image(systemName: "person.2.fill")
-                                    .font(.title2)
+                        VStack {
+                            NavigationLink{
+                                RouteDetailView()
                             }
-                            .overlay(Rectangle().stroke(.black))
-                            .padding(.vertical,1)
-                            HStack{
-                                Text("Ruta 2")
-                                    .bold()
-                                Image(systemName: "clock")
+                            label: {
+                                Text("Recomendados")
                                     .font(.title2)
-                                Text("15 min")
-                                    .frame(width: 55)
-                                Image(systemName: "person.fill")
-                                    .font(.title2)
+                                    .foregroundColor(.blue)
                             }
-                            .overlay(Rectangle().stroke(.black))
-                            .padding(.vertical,1)
-                            HStack{
-                                Text("Ruta 3")
-                                    .bold()
-                                Image(systemName: "clock")
-                                    .font(.title2)
-                                Text("15 min")
-                                    .frame(width: 55)
-                                Image(systemName: "person.3.fill")
-                                    .font(.title2)
+                            VStack(alignment:.leading){
+                                HStack{
+                                    Text("Ruta 1")
+                                        .bold()
+                                    Image(systemName: "clock")
+                                        .font(.title2)
+                                    Text("15 min")
+                                        .frame(width: 55)
+                                    Image(systemName: "person.2.fill")
+                                        .font(.title2)
+                                }
+                                .padding(.vertical,1)
+                                HStack{
+                                    Text("Ruta 2")
+                                        .bold()
+                                    Image(systemName: "clock")
+                                        .font(.title2)
+                                    Text("15 min")
+                                        .frame(width: 55)
+                                    Image(systemName: "person.fill")
+                                        .font(.title2)
+                                }
+                                .padding(.vertical,1)
+                                HStack{
+                                    Text("Ruta 3")
+                                        .bold()
+                                    Image(systemName: "clock")
+                                        .font(.title2)
+                                    Text("15 min")
+                                        .frame(width: 55)
+                                    Image(systemName: "person.3.fill")
+                                        .font(.title2)
+                                }
+                                .padding(.vertical,1)
                             }
-                            .overlay(Rectangle().stroke(.black))
-                            .padding(.vertical,1)
                         }
                         VStack{
-                            HStack{
-                                Image(systemName: "cloud.sun")
-                                    .font(.title)
-                                Text("15°")
-                            }
-                            Text("Naucalpan")
-                                .bold()
-                                .font(.caption)
+                            Image("climaApp")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 130, height: 130)
+                                .cornerRadius(20)
                         }
-                        .overlay(Rectangle().stroke(.black).frame(width: 80, height: 95))
                     }
+                        .padding(30)
+                        .background(Color(UIColor.systemGray5))
+                        
+                    
                     Spacer()
                     //Anuncio
                     Image("watch")
                         .resizable()
                         .scaledToFit()
-                        .padding(.vertical)
+                        .cornerRadius(30)
+                        .padding()
                     Spacer()
                     //Recomendaciones
-                    ScrollView(.horizontal){
+                    ScrollView(.horizontal,showsIndicators: false){
                         HStack{
                             HStack{
                                 VStack(alignment:.leading){
@@ -119,9 +157,12 @@ struct ContentView: View {
                                     Text("Ruta A -> B")
                                         .bold()
                                     Text("Esta ruta es muy segura y bien iluminada.")
+                                        
                                 }
+                                .foregroundColor(.white)
                                 .frame(width: 150,height: 150)
-                                .overlay(Rectangle().stroke())
+                                .background(Color.orange)
+                                .cornerRadius(10)
                                 .padding(.horizontal,5)
                             }
                             HStack{
@@ -137,8 +178,10 @@ struct ContentView: View {
                                         .bold()
                                     Text("Esta ruta no la recomiendo de noche.")
                                 }
+                                .foregroundColor(.white)
                                 .frame(width: 150,height: 150)
-                                .overlay(Rectangle().stroke())
+                                .background(Color.red)
+                                .cornerRadius(10)
                                 .padding(.horizontal,5)
                             }
                             HStack{
@@ -148,14 +191,16 @@ struct ContentView: View {
                                             .frame(width: 30, height: 30)
                                             .cornerRadius(32)
                                             .overlay(Circle().stroke(.gray))
-                                        Text("Snatiago Jair")
+                                        Text("Santiago Jair")
                                     }
                                     Text("Ruta A -> L")
                                         .bold()
                                     Text("La ruta no es muy segura, pero si barata. ")
                                 }
+                                .foregroundColor(.white)
                                 .frame(width: 150,height: 150)
-                                .overlay(Rectangle().stroke())
+                                .background(Color.green)
+                                .cornerRadius(10)
                                 .padding(.horizontal,5)
                             }
                             HStack{
@@ -171,16 +216,19 @@ struct ContentView: View {
                                         .bold()
                                     Text("Esta ruta es muy segura y bien iluminada.")
                                 }
+                                .foregroundColor(.white)
                                 .frame(width: 150,height: 150)
-                                .overlay(Rectangle().stroke())
+                                .background(Color.purple)
+                                .cornerRadius(10)
                                 .padding(.horizontal,5)
                             }
                         }
                     }
+                    .padding()
                 }
             }
+            .ignoresSafeArea(.all)
         }
-        .padding()
         .refreshable{}
     }
 }

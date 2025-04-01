@@ -11,7 +11,7 @@ import SwiftUI
 struct AcaVoy_App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreen()
         }
     }
 }
